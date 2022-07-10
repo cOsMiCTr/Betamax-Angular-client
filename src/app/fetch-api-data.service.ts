@@ -6,14 +6,20 @@ import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://betamax-cosmictr.herokuapp.com/';
+
+const token = localStorage.getItem('token');
+
+const username = localStorage.getItem('user');
+
 @Injectable({
   providedIn: 'root'
 })
-export class UserRegistrationService {
+
+
+export class FetchApiDataService {
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
-    this.http = http;
 
   }
   // Making the api call for the user registration endpoint
@@ -28,19 +34,8 @@ export class UserRegistrationService {
       );
   }
 
-  //Getall movies
-  getAllMovies(): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies', {
-      headers: new HttpHeaders(
-        {
-          Authorization: 'Bearer ' + token,
-        })
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
+
+
 
   // User Login
   public userLogin(userDetails: any): Observable<any> {
@@ -50,6 +45,21 @@ export class UserRegistrationService {
         catchError(this.handleError)
       );
   }
+  
+
+    //Getall movies
+    getAllMovies(): Observable<any> {
+      const token = localStorage.getItem('token');
+      return this.http.get(apiUrl + 'movies', {
+        headers: new HttpHeaders(
+          {
+            Authorization: 'Bearer ' + token,
+          })
+      }).pipe(
+        map(this.extractResponseData),
+        catchError(this.handleError)
+      );
+    }
 
   // Get one movie
   getOneMovie(title: any): Observable<any> {
@@ -208,10 +218,11 @@ export class UserRegistrationService {
 
 
   // Non-typed response extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: any): any {
     const body = res;
     return body || {};
   }
+
 
 }
 
