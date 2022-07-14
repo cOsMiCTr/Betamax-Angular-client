@@ -16,6 +16,23 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { RouterModule, Routes } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { DirectorViewComponent } from './director-view/director-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: ProfileViewComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+];
 
 
 @NgModule({
@@ -23,9 +40,18 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
     AppComponent,
     UserRegistrationFormComponent,
     UserLoginFormComponent,
+    MovieCardComponent,
+    WelcomePageComponent,
+    DirectorViewComponent,
+    GenreViewComponent,
+    ProfileViewComponent,
+    EditUserProfileComponent,
+    SynopsisViewComponent,
+    NavbarComponent,
 
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -37,6 +63,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
