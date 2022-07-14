@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "Betamax-Angular-client",
             "outputPath": "dist/betamax-angular-client",
             "index": "src/index.html",
             "main": "src/main.ts",
