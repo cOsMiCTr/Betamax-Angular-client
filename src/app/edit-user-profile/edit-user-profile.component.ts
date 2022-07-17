@@ -9,6 +9,15 @@ import { Router } from '@angular/router';
   templateUrl: './edit-user-profile.component.html',
   styleUrls: ['./edit-user-profile.component.scss']
 })
+
+/**
+ * @class EditUserProfileComponent
+ * @implements {ngOnInit}
+ * @description This component is used to edit the user's profile.
+ * @param {any} data
+ * @memberof EditUserProfileComponent
+ * @throws Error
+ */
 export class EditUserProfileComponent implements OnInit {
 
   @Input() userData: any = {};
@@ -23,7 +32,19 @@ export class EditUserProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+/**
+ * Update the user profile
+ * @param userData
+ * @param form
+ * @param formData
+ * @param formData.value
+ * @param formData.value.Name
+ * @param formData.value.Bio
+ * @param formData.value.Birthday
+ * @returns {Promise<void>}
+ * @memberof EditUserProfileComponent
+ * @throws Error
+ */
   editUser(): void {
     console.log(this.userData);
     this.fetchApiData.editUser(this.userData).subscribe((result) => {

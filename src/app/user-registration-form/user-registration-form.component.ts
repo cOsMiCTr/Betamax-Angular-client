@@ -9,6 +9,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './user-registration-form.component.html',
   styleUrls: ['./user-registration-form.component.scss']
 })
+
+/**
+ * @class UserRegistrationFormComponent
+ * @implements {ngOnInit}
+ * @description This component is used to register the user.
+ * @param {any} userData
+ * @memberof UserRegistrationFormComponent
+ * 
+ */
 export class UserRegistrationFormComponent implements OnInit {
 
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
@@ -21,7 +30,11 @@ constructor(
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+/**
+ * @description This method is used to register the user.
+ * @memberof UserRegistrationFormComponent
+ * @returns {void}
+ */
 registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((response) => {
   // Logic for a successful user registration goes here! (To be implemented)

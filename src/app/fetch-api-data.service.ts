@@ -16,15 +16,26 @@ const username = localStorage.getItem('user');
 })
 
 
+/**
+ * @class FetchApiDataService
+ * @implements {OnInit}
+ * @description This service is used to fetch data from the api.
+ * @param {any} http - inject the HttpClient
+ * @memberof FetchApiDataService
+ */
 export class FetchApiDataService {
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
 
   }
-  // Making the api call for the user registration endpoint
 
-  //User Registration
+  /**
+   * @description This method is used to register a new user.
+   * @param {any} userDetails - user details
+   * @returns - observable of user details
+   * @memberof FetchApiDataService
+   */
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
@@ -36,8 +47,12 @@ export class FetchApiDataService {
 
 
 
-
-  // User Login
+/**
+ * 
+ * @param userDetails - user details
+ * @returns - observable of user details
+ * @memberof FetchApiDataService
+ */
   public userLogin(userDetails: any): Observable<any> {
     return this.http
       .post(apiUrl + 'login', userDetails)
@@ -47,7 +62,12 @@ export class FetchApiDataService {
   }
   
 
-    //Getall movies
+/**
+ * @description This method is used to get all the movies from the api.
+ * @returns - observable of all the movies
+ * @memberof FetchApiDataService
+ * 
+ */
     getAllMovies(): Observable<any> {
       const token = localStorage.getItem('token');
       return this.http.get(apiUrl + 'movies', {
@@ -61,7 +81,12 @@ export class FetchApiDataService {
       );
     }
 
-  // Get one movie
+  /**
+   * @description This method is used to get single movie details from the api.
+   * @param {any} title - movie title
+   * @returns - observable of movie details
+   * @memberof FetchApiDataService
+   */
   getOneMovie(title: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -76,7 +101,12 @@ export class FetchApiDataService {
       );
   }
 
-  // get Director info
+  /**
+   * @description This method is used to get director details from the api.
+   * @param {any} name - director name
+   * @returns - observable of director details
+   * @memberof FetchApiDataService
+   */
   getDirector(name: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -91,7 +121,12 @@ export class FetchApiDataService {
       );
   }
 
-  // get Genre info
+  /**
+   * @description This method is used to get genre details from the api.
+   * @param {any} name - genre name
+   * @returns - observable of genre details
+   * @memberof FetchApiDataService
+   */
   getGenre(name: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -106,7 +141,13 @@ export class FetchApiDataService {
       );
   }
 
-  // get user
+  /**
+   * @description This method is used to get user details from the api.
+   * @param {any} username - user name
+   * @returns - observable of user details
+   * @memberof FetchApiDataService
+   * @catchError - handle error
+   */
   getUser(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -122,7 +163,11 @@ export class FetchApiDataService {
       );
   }
 
-  // List fav movies
+  /**
+   * @description This method is used to get favourite movies from the api.
+   * @returns - observable of favourite movies
+   * @memberof FetchApiDataService
+   */
   getFavoriteMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -138,7 +183,13 @@ export class FetchApiDataService {
       );
   }
 
-  // Add Fav movie
+  /**
+     * @description This method is used to add a movie to the favourite list.
+     * @param {any} movieID - movie id
+     * @returns - observable of favourite movies
+     * @memberof FetchApiDataService
+     * @catchError - handle error
+   */
   addFavoriteMovie(movieID: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -154,7 +205,13 @@ export class FetchApiDataService {
       );
   }
 
-  // Remove Fav movie
+  /**
+   * @description This method is used to remove a movie from the favourite list.
+   * @param {any} movieID - movie id
+   * @returns - observable of favourite movies
+   * @memberof FetchApiDataService
+   * @catchError - handle error
+   */
   removeFavoriteMovie(movieID: any): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -170,7 +227,12 @@ export class FetchApiDataService {
       );
   }
 
-  //Edit user
+  /**
+   * @description This method is used to update user details.
+   * @param {any} updateDetails - update user details
+   * @returns - observable of user details
+   * @memberof FetchApiDataService
+   */
   editUser(updateDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -186,7 +248,11 @@ export class FetchApiDataService {
       );
   }
 
-  //delete user
+  /**
+   * @description This method is used to delete user.
+   * @returns - observable of user details
+   * @memberof FetchApiDataService
+   */
   deleteUser(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -202,7 +268,11 @@ export class FetchApiDataService {
       );
   }
 
-
+/**
+ * 
+ * @param error - error message
+ * @returns 
+ */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
@@ -217,7 +287,12 @@ export class FetchApiDataService {
 
 
 
-  // Non-typed response extraction
+  /**
+     * @description This method is used to extract the response data.
+     * @param {any} res - response data
+     * @returns - response data
+     * @memberof FetchApiDataService
+   */
   private extractResponseData(res: any): any {
     const body = res;
     return body || {};
