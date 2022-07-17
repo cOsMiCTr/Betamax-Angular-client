@@ -6,6 +6,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './director-view.component.html',
   styleUrls: ['./director-view.component.scss']
 })
+
+/**
+ * @class DirectorViewComponent
+ * @implements {ngOnInit}
+ * @description This component is used to display the director's profile.
+ * @param {any} data
+ * @memberof DirectorViewComponent
+ * @throws Error
+ * @constructor
+ */
 export class DirectorViewComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -15,7 +25,9 @@ export class DirectorViewComponent implements OnInit {
       Birthday: Date,
     }
   ) { }
-
+/**
+ * @description This method is used to initialize the component.
+ */
   ngOnInit(): void {
   }
 
